@@ -7,9 +7,11 @@
 <head>
   <meta charset="utf-8" />
     
+  <meta name="description" content="algo &amp; backend exploration" />
+  
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-     Hexo
+     1earn
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -50,7 +52,7 @@
       <img src="/images/cover5.jpg" alt="image frame" />
     </div>
     <div class="cover-inner text-center text-white">
-      <h1><a href="/">Hexo</a></h1>
+      <h1><a href="/">1earn</a></h1>
       <div id="subtitle-box">
         
         <span id="subtitle"></span>
@@ -76,6 +78,64 @@
     
     
     
+    
+    <article
+  id="post-Leetcode No.101"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/06/24/Leetcode%20No.101/"
+    >LeetCode no.101 - Symmetric tree (medium)</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/06/24/Leetcode%20No.101/" class="article-date">
+  <time datetime="2020-06-24T06:00:47.489Z" itemprop="datePublished">2020-06-24</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>目標：生成樹出現左右鏡面相反的情況則return true else return false</p>
+<p>Insight: 鏡面相反: for every node:右節點(right child node)與左節點(left child node)相同, 左節點與右節點相同</p>
+<ul>
+<li>Dummy 解決方法（100% runtime) could be much better!!:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">public boolean isSymmetric(TreeNode root) &#123;</span><br><span class="line">        TreeNode copy &#x3D; root;</span><br><span class="line">        if(root &#x3D;&#x3D; null)</span><br><span class="line">            return true;</span><br><span class="line">        if(root.left &#x3D;&#x3D; null &amp;&amp; root.right &#x3D;&#x3D; null)</span><br><span class="line">            return true;</span><br><span class="line">        root &#x3D; root.left;</span><br><span class="line">        copy &#x3D; copy.right;</span><br><span class="line">        if((root &#x3D;&#x3D; null &amp;&amp; copy !&#x3D;null) || (root !&#x3D; null &amp;&amp; copy &#x3D;&#x3D;null))</span><br><span class="line">            return false;</span><br><span class="line">        if(root.val !&#x3D; copy.val)</span><br><span class="line">            return false;</span><br><span class="line">        if(compareNode(root,copy))</span><br><span class="line">            return true;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    public boolean compareNode(TreeNode root, TreeNode copy)&#123;</span><br><span class="line">        boolean x &#x3D; false;</span><br><span class="line">        boolean y &#x3D; false;</span><br><span class="line">        if(root &#x3D;&#x3D; null &amp;&amp; copy &#x3D;&#x3D; null)</span><br><span class="line">            return true;</span><br><span class="line">        if((root &#x3D;&#x3D; null &amp;&amp; copy !&#x3D;null) || (root !&#x3D; null &amp;&amp; copy &#x3D;&#x3D;null))</span><br><span class="line">        &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        if(root.val &#x3D;&#x3D; copy.val)</span><br><span class="line">        &#123;</span><br><span class="line">            x &#x3D; compareNode(root.left,copy.right);</span><br><span class="line">            y &#x3D; compareNode(root.right,copy.left);</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        if(!x || !y)</span><br><span class="line">            return false;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>Official 解決方法：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public boolean isSymmetric(TreeNode root) &#123;</span><br><span class="line">    return isMirror(root, root);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public boolean isMirror(TreeNode t1, TreeNode t2) &#123;</span><br><span class="line">    if (t1 &#x3D;&#x3D; null &amp;&amp; t2 &#x3D;&#x3D; null) return true;</span><br><span class="line">    if (t1 &#x3D;&#x3D; null || t2 &#x3D;&#x3D; null) return false;</span><br><span class="line">    return (t1.val &#x3D;&#x3D; t2.val)</span><br><span class="line">        &amp;&amp; isMirror(t1.right, t2.left)</span><br><span class="line">        &amp;&amp; isMirror(t1.left, t2.right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
     
     <article
   id="post-hello-world"
@@ -146,7 +206,7 @@
       <li>
         Copyrights &copy;
         2015-2020
-        <i class="ri-heart-fill heart_icon"></i> John Doe
+        <i class="ri-heart-fill heart_icon"></i> tomilia
       </li>
     </ul>
     <ul>
@@ -201,7 +261,7 @@
 <nav class="navbar">
   
   <div class="logo">
-    <a href="/"><img src="/images/ayer-side.svg" alt="Hexo"></a>
+    <a href="/"><img src="/images/ayer-side.svg" alt="1earn"></a>
   </div>
   
   <ul class="nav nav-main">
@@ -289,7 +349,7 @@
 <script>
   try {
     var typed = new Typed("#subtitle", {
-      strings: ['Hi', 'Lovin&#39; programming', 'Starts to write sth'],
+      strings: ['Hi', 'For own learning purpose', 'Starts to write sth'],
       startDelay: 0,
       typeSpeed: 200,
       loop: true,
